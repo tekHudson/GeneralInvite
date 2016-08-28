@@ -40,3 +40,4 @@ SlashCmdList.GENERALINV = function()
 end
 
 SLASH_GENERALINV1 = "/generalinv"
+SLASH_GENERALINV2 = "/gi"

@@ -1,5 +1,5 @@
 local is_listening = false
-local triggers = {"1","inv"}
+local triggers = {"2","raid"}
 local raidFrame = CreateFrame("Frame")
 local generalChannel = GetChannelName("General")
 
@@ -36,3 +36,4 @@ SlashCmdList.GENERALINVRAID = function()
 end
 
 SLASH_GENERALINVRAID1 = "/generalinvraid"
+SLASH_GENERALINVRAID2 = "/gir"

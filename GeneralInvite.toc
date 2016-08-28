@@ -1,0 +1,4 @@
+## Interface: 70000
+## Title: GeneralInvite
+GeneralInvite.lua
+GeneralInviteRaid.lua

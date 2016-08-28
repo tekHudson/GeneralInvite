@@ -7,10 +7,17 @@ frame:SetScript("OnEvent",function(_,event,message,sender,_,_,_,_,_,_)
   -- If there are less than 5 people in my group, invite sender
   if GetNumGroupMembers() < 5 then
     if (event == "CHAT_MSG_WHISPER") or generalChannel then
-      for _,trigger in ipairs(triggers) do
-        if message:lower():find(trigger) then
+      if userString then
+        if string.match(userString, message) then
           InviteUnit(sender)
           break
+        end
+      else
+        for _,trigger in ipairs(triggers) do
+          if message:lower():find(trigger) then
+            InviteUnit(sender)
+            break
+          end
         end
       end
     end
@@ -23,7 +30,7 @@ frame:SetScript("OnEvent",function(_,event,message,sender,_,_,_,_,_,_)
   end
 end)
 
-SlashCmdList.GENERALINV = function()
+SlashCmdList.GENERALINV = function(userString)
   if is_listening then
     -- Turn off
     is_listening = false

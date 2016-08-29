@@ -8,14 +8,24 @@ raidFrame:SetScript("OnEvent",function(_,event,message,sender,_,_,_,_,_,_)
   if GetNumGroupMembers() == 5 then
     ConvertToRaid()
   end
-  -- Invite sender
-  if (event == "CHAT_MSG_WHISPER") or generalChannel then
-    for _,trigger in ipairs(triggers) do
-      if message:lower():find(trigger) then
-        InviteUnit(sender)
-        break
+
+  -- If group is at max size, convert to a raid
+  if GetNumGroupMembers() == 40 then
+    -- Invite sender
+    if (event == "CHAT_MSG_WHISPER") or generalChannel then
+      for _,trigger in ipairs(triggers) do
+        if message:lower():find(trigger) then
+          InviteUnit(sender)
+          break
+        end
       end
     end
+  else
+    -- Turn off
+    is_listening = false
+    print("|cff00ff00 Full raid, no longer auto-inviting.|r")
+    raidFrame:UnregisterEvent("CHAT_MSG_WHISPER")
+    raidFrame:UnregisterEvent("CHAT_MSG_CHANNEL")
   end
 end)
 
